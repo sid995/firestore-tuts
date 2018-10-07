@@ -23,7 +23,11 @@ function renderCafe(doc) {
   cross.addEventListener("click", e => {
     e.stopPropagation();
     let id = e.target.parentElement.getAttribute("data-id");
+<<<<<<< HEAD
     // using .doc() to find single document and delete() to delete the document
+=======
+    // using .doc() to find single document
+>>>>>>> c46988f224c3a7b8af81ca3696ce43d79a63aa2f
     db.collection("cafes")
       .doc(id)
       .delete();
