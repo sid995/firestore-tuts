@@ -1,7 +1,10 @@
 <html>
 
 <head>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
   <link rel="stylesheet" href="./styles.css">
+
 </head>
 
 <body>
@@ -10,6 +13,20 @@
     <form id="add-cafe-form"></form>
     <ul id="cafe-list"></ul>
   </div>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAzmjZ_acdOWAGXtvu2_fa0mpQ11UY4ZLk",
+      authDomain: "firestore-tutorials-adad2.firebaseapp.com",
+      databaseURL: "https://firestore-tutorials-adad2.firebaseio.com",
+      projectId: "firestore-tutorials-adad2",
+      storageBucket: "firestore-tutorials-adad2.appspot.com",
+      messagingSenderId: "1059753877901"
+    };
+    firebase.initializeApp(config);
+    const db = firebase.firestore()
+    db.settings({ timestampsInSnapshots: true })
+  </script>
   <script src="app.js"></script>
 </body>
 
