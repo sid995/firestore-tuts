@@ -33,6 +33,7 @@ function renderCafe(doc) {
 // Getting data
 
 db.collection("cafes")
+  .where("city", ">", "E")
   .get()
   .then(snapshot => {
     // get data in snapshot
@@ -49,5 +50,5 @@ form.addEventListener("submit", e => {
     city: form.city.value
   });
   form.name.value = "";
-  form.name.city = "";
+  form.city.value = "";
 });
