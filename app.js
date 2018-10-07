@@ -30,18 +30,18 @@ function renderCafe(doc) {
   });
 }
 
-// Getting data
+// Getting data - old
 
-db.collection("cafes")
-  .where("city", "==", "Delhi")
-  .orderBy("name")
-  .get()
-  .then(snapshot => {
-    // get data in snapshot
-    snapshot.docs.forEach(doc => {
-      renderCafe(doc);
-    }); // cycle through each data in snapshot
-  });
+// db.collection("cafes")
+//   //.where("city", "==", "Delhi")
+//   //.orderBy("name")
+//   .get()
+//   .then(snapshot => {
+//     // get data in snapshot
+//     snapshot.docs.forEach(doc => {
+//       renderCafe(doc);
+//     }); // cycle through each data in snapshot
+//   });
 
 // Saving data
 form.addEventListener("submit", e => {
@@ -53,3 +53,18 @@ form.addEventListener("submit", e => {
   form.name.value = "";
   form.city.value = "";
 });
+
+// Real time listener
+db.collection("cafes")
+  .orderBy("city")
+  .onSnapshot(snapshot => {
+    let changes = snapshot.docChanges();
+    changes.forEach(change => {
+      if (change.type == "added") {
+        renderCafe(change.doc);
+      } else if (change.type == "removed") {
+        let li = cafeList.querySelector("[data-id=" + change.doc.id + "]");
+        cafeList.removeChild(li);
+      }
+    });
+  });
