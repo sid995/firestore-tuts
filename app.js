@@ -33,7 +33,7 @@ function renderCafe(doc) {
 // Getting data
 
 db.collection("cafes")
-  .where("city", ">", "E")
+  //.where("city", ">", "E")
   .get()
   .then(snapshot => {
     // get data in snapshot
